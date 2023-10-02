@@ -2,12 +2,12 @@ import classes from './NewPost.module.css';
 import { useState } from 'react';
 
 function NewPost() {
-    const [currentState, setCurrentState] = useState();
+    const [currentState, setCurrentState] = useState('');
 
     
 
     const changeBodyHandle = (event) => {
-        event.target.value(setCurrentState);
+        setCurrentState(event.target.value);
     };
 
   return (
@@ -19,6 +19,7 @@ function NewPost() {
             onChange={changeBodyHandle}
             required rows={3} />
       </p>
+      <p>{currentState}</p>
       <p>
         <label htmlFor="name">Your name</label>
         <input 
