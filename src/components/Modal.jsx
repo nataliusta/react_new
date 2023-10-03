@@ -1,10 +1,10 @@
 import styles from './Modal.module.css';
 
-const Modal = () => {
-    retrun (
+const Modal = (props) => {
+    return (
         <>
             <div className={styles.backdrop} />
-            <dialog className={styles.modal} ></dialog>
+            <dialog open className={styles.modal} >{props.children}</dialog>
         </>
     );
 }
