@@ -8,6 +8,7 @@ import styles from './PostsList.module.css';
 const PostsList = () => {
     const [enteredBody, setEnteredBody] = useState('');
     const [enteredName, setEnteredName] = useState('');
+    const [modalIsVısıble, setModalIsVisible] = useState(true);
 
     const onBodyChangeHandler = (event) => {
         setEnteredBody(event.target.value);
@@ -17,14 +18,18 @@ const PostsList = () => {
         setEnteredName(event.target.value);
     };
 
+    const hideModalHandle = () => {
+        setModalIsVisible(false);
+    };
+
     return (
         <>
-            <Modal>
+            {modalIsVısıble && <Modal onClose={hideModalHandle} >
                 <NewPost 
                     onBodyChange={onBodyChangeHandler} 
                     onNameChange={onNameChangeHandler} 
                 />
-            </Modal>
+            </Modal>}
             <ul className={styles.posts}>
                 <Post author={enteredName} body={enteredBody} />
                 <Post author='Semih' body='I want to learn React' />
