@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './NewPost.module.css';
 
-function NewPost(props) {
+function NewPost({onCancel, onAddPost}) {
   const [enteredBody, setEnteredBody] = useState('');
     const [enteredName, setEnteredName] = useState('');
     
@@ -20,8 +20,8 @@ function NewPost(props) {
       body: enteredBody,
       name: enteredName
     };
-    console.log(postData);
-    props.onCancel();
+    onAddPost(postData);
+    onCancel();
   }
 
   return (
