@@ -23,8 +23,7 @@ const PostsList = ({isPosting, onStopPosting}) => {
                 </Modal>
             }
             <ul className={styles.posts}>
-                <Post author='Semih' body='I want to learn React' />
-                <Post author='Buddy' body='Hey guys,are there React lovers there?' />
+                {posts.map((post) => <Post body={post.body} name={post.name} />)}
             </ul>
         </>
     );
