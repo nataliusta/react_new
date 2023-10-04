@@ -41,7 +41,7 @@ function NewPost({onCancel, onAddPost}) {
             id="name" required />
       </p>
       <p className={styles.actions}>
-        <button type='button' onClick={props.onCancel}>Cancel</button>
+        <button type='button' onClick={onCancel}>Cancel</button>
         <button>Submit</button>
       </p>
     </form>
