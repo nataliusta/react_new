@@ -1,10 +1,14 @@
+import MainHeader from './components/MainHeader';
 import PostsList from './components/PostsList';
 
 function App() {
   return (
-    <main>
-      <PostsList />
-    </main>
+    <>
+    <MainHeader />
+      <main>
+        <PostsList />
+      </main>
+    </>
   );
 }
 
