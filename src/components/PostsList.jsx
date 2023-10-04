@@ -5,10 +5,10 @@ import Post from './Post';
 import Modal from './Modal';
 import styles from './PostsList.module.css';
 
-const PostsList = () => {
+const PostsList = ({isPosting, onStopPosting, onCancel}) => {
     const [enteredBody, setEnteredBody] = useState('');
     const [enteredName, setEnteredName] = useState('');
-    const [modalIsVisible, setModalIsVisible] = useState(true);
+    
 
     const onBodyChangeHandler = (event) => {
         setEnteredBody(event.target.value);
@@ -18,16 +18,13 @@ const PostsList = () => {
         setEnteredName(event.target.value);
     };
 
-    const hideModalHandle = () => {
-        setModalIsVisible(false);
-    };
-
     return (
         <>
-            {modalIsVisible && <Modal onClose={hideModalHandle} >
+            {isPosting && <Modal onClose={onStopPosting} >
                 <NewPost 
                     onBodyChange={onBodyChangeHandler} 
                     onNameChange={onNameChangeHandler} 
+                    onCancel={onStopPosting}
                 />
             </Modal>}
             <ul className={styles.posts}>

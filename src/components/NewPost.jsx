@@ -1,9 +1,13 @@
-import classes from './NewPost.module.css';
+import styles from './NewPost.module.css';
 
 function NewPost(props) {
 
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+  };
+
   return (
-    <form className={classes.form}>
+    <form className={styles.form}>
       <p>
         <label htmlFor="body">Text</label>
         <textarea 
@@ -17,6 +21,10 @@ function NewPost(props) {
             type="text" 
             onChange={props.onNameChange}
             id="name" required />
+      </p>
+      <p className={styles.actions}>
+        <button type='button' onClick={props.onCancel}>Cancel</button>
+        <button onSubmit={onSubmitHandler}>Submit</button>
       </p>
     </form>
   );
