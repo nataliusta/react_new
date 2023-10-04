@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import NewPost from './NewPost';
 import Post from './Post';
@@ -8,8 +8,18 @@ import styles from './PostsList.module.css';
 const PostsList = ({isPosting, onStopPosting}) => {
     const [posts, setPosts] = useState([]);
 
+    useEffect(() => {
+        async function fetchPosts() {
+            const response = await fetch('https://react-new-a4be5-default-rtdb.europe-west1.firebasedatabase.app/posts');
+            const resData = await response.json();
+            setPosts(resData.posts);
+        }
+
+        fetchPosts();
+    }, []);
+
     const addPostHandler = (postData) => {
-        fetch('https://react-new-a4be5-default-rtdb.europe-west1.firebasedatabase.app/posts.json',{
+        fetch('https://react-new-a4be5-default-rtdb.europe-west1.firebasedatabase.app/posts.json', {
             method: 'POST',
             body: JSON.stringify(postData),
             headers: {
