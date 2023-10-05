@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Modal.module.css';
 
 const Modal = ({children}) => {
+    
     const navigate = useNavigate();
     const closeHandler = () => {
         navigate('..');
