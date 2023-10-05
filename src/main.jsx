@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from '.react-router-dom';
-import App from './App';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Posts from './components/routes/Posts';
 import './index.css';
+import NewPost from './components/routes/NewPost';
+import RootLayout from './components/routes/RootLayout';
 
 const router = createBrowserRouter([ // array of all routers you have
-  { path: '/', element: <App /> }, // main domain
-
+  { path: '/', element: <RootLayout />, children: [
+    { 
+      path: '/', 
+      element: <Posts />, 
+      children: [{ path: '/create-post', element: <NewPost /> }],
+    }, // main domain
+  ]},
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
