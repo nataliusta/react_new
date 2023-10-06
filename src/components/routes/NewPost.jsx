@@ -1,46 +1,24 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Form } from 'react-router-dom';
 import Modal from '../Modal';
 import styles from './NewPost.module.css';
 
-function NewPost({onAddPost}) {
-  const [enteredBody, setEnteredBody] = useState('');
-    const [enteredName, setEnteredName] = useState('');
-    
-
-    const onBodyChangeHandler = (event) => {
-        setEnteredBody(event.target.value);
-    };
-
-    const onNameChangeHandler = (event) => {
-        setEnteredName(event.target.value);
-    };
-
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    const postData = {
-      body: enteredBody,
-      name: enteredName
-    };
-    onAddPost(postData);
-    onCancel();
-  }
+function NewPost() {
 
   return (
     <Modal>
-      <form className={styles.form} onSubmit={onSubmitHandler}>
+      <Form method='post' className={styles.form}>
         <p>
           <label htmlFor="body">Text</label>
           <textarea 
-              id="body" 
-              onChange={onBodyChangeHandler}
+              id='body'
+              name='body'
               required rows={3} />
         </p>
         <p>
           <label htmlFor="name">Name</label>
           <input 
-              type="text" 
-              onChange={onNameChangeHandler}
+              type="text"
+              name='name'
               id="name" required />
         </p>
         <p className={styles.actions}>
@@ -49,9 +27,21 @@ function NewPost({onAddPost}) {
           </Link>
           <button>Submit</button>
         </p>
-      </form>
+      </Form>
     </Modal>
   );
 }
 
 export default NewPost;
+
+export async function action({request}) {
+  const formData = await request.formData(); 
+  formData.get('body');
+  fetch('https://react-new-a4be5-default-rtdb.europe-west1.firebasedatabase.app/posts.json', {
+            method: 'POST',
+            body: JSON.stringify(postData),
+            headers: {
+                'Content-type': 'application/json'
+            }
+    });
+}
