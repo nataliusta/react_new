@@ -6,17 +6,6 @@ import styles from './PostsList.module.css';
 const PostsList = () => {
     const posts = useLoaderData();
 
-    /*const addPostHandler = (postData) => {
-        fetch('https://react-new-a4be5-default-rtdb.europe-west1.firebasedatabase.app/posts.json', {
-            method: 'POST',
-            body: JSON.stringify(postData),
-            headers: {
-                'Content-type': 'application/json'
-            }
-        });
-        setPosts((existingPosts) => [postData, ...existingPosts]);
-    }*/
-
     return (
         <>
             {posts.length > 0 && (
